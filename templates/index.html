@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Diamond</title>
+<style>
+
+  body {
+    margin: 0;
+    text-align: center;
+  }
+
+  .button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #ABD5D8;
+    border: none;
+    color: #000;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  .button:hover span {
+    padding-right: 25px;
+  }
+
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+  input[type=text]  {
+    width: 40%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+  div {
+
+    background-color: #ABD5D8;
+    padding: 20px;
+  }
+  .center {
+    margin: auto;
+    width: 60%;
+    border: 10px solid #73AD21;
+    padding: 10px;
+    border-radius: 10px;
+  }
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <form action="{{url_for('getPredict')}}" method="POST">
+      <h1 style="color:DodgerBlue;">Model Result</h1>
+      <p>Input variables in model</p>
+      <hr>
+
+      <label for="value"><b>Carat:</b></label>
+      <input type="text" placeholder="Ex:22.00" name="x1" required>
+      <br>
+
+      <label for="value"><b>Color:</b></label>
+      <input type="text" placeholder="J:1.0, I:2.0, H:3.0, G:4.0, F:5.0, E:6.0, D:7.0" name="x2" required>
+      <br>
+
+      <label for="value"><b>Cut:</b></label>
+      <input type="text" placeholder="Fair:1,Good:2, Very Good:3, Premium:4, Ideal:5.0" name="x3" required>
+      <hr>
+
+      <button type="submit" class="predictbtn">Get prediction</button>
+    </form>
+
+    <br>
+    <br>
+    <h1 style="color:IndianRed;">{{prediction_text}}</h1>
+  </div>
+</body>
+</html>
